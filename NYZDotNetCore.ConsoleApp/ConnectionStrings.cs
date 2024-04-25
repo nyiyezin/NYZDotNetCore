@@ -15,6 +15,7 @@ namespace NYZDotNetCore.ConsoleApp
             InitialCatalog = "NYZDotNetCore",
             UserID = "sa",
             Password = "sa@123",
+            TrustServerCertificate = true,
         };
         
     }

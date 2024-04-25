@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace NYZDotNetCore.ConsoleApp
 {
+    [Table("Tbl_Blog")]
     internal class BlogDto
     {
+        [Key]
         public int BlogId { get; set; }
         public string BlogTitle { get; set; }
         public string BlogAuthor { get; set;}
