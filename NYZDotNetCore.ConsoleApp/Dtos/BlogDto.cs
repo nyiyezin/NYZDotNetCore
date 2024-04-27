@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NYZDotNetCore.ConsoleApp
+namespace NYZDotNetCore.ConsoleApp.Dtos
 {
     [Table("Tbl_Blog")]
     internal class BlogDto
@@ -14,7 +14,7 @@ namespace NYZDotNetCore.ConsoleApp
         [Key]
         public int BlogId { get; set; }
         public string BlogTitle { get; set; }
-        public string BlogAuthor { get; set;}
+        public string BlogAuthor { get; set; }
         public string BlogContent { get; set; }
     }
 

@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection.Metadata;
 
-namespace NYZDotNetCore.ConsoleApp
+namespace NYZDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     internal class AdoDotNetExample
     {
@@ -67,7 +67,7 @@ namespace NYZDotNetCore.ConsoleApp
             Console.WriteLine("Blog Title => " + dataRow["BlogTitle"]);
             Console.WriteLine("Blog Author => " + dataRow["BlogAuthor"]);
             Console.WriteLine("Blog Content => " + dataRow["BlogContent"]);
-            Console.WriteLine("----------------------------------");            
+            Console.WriteLine("----------------------------------");
         }
 
         public void Create(string title, string author, string content)

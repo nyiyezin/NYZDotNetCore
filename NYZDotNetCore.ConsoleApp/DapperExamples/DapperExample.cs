@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using NYZDotNetCore.ConsoleApp.Dtos;
+using NYZDotNetCore.ConsoleApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NYZDotNetCore.ConsoleApp
+namespace NYZDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperExample
     {
@@ -25,8 +27,8 @@ namespace NYZDotNetCore.ConsoleApp
         {
             using IDbConnection dbConnection = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
             List<BlogDto> list = dbConnection.Query<BlogDto>("SELECT * FROM Tbl_Blog").ToList();
-            
-            foreach(BlogDto item in list)
+
+            foreach (BlogDto item in list)
             {
                 Console.WriteLine(item.BlogId);
                 Console.WriteLine(item.BlogTitle);
@@ -38,8 +40,8 @@ namespace NYZDotNetCore.ConsoleApp
         private void Edit(int id)
         {
             using IDbConnection dbConnection = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
-            var item = dbConnection.Query<BlogDto>("SELECT * FROM Tbl_Blog where blogId = @BlogId", new BlogDto { BlogId = id}).FirstOrDefault();
-            if(item is null)
+            var item = dbConnection.Query<BlogDto>("SELECT * FROM Tbl_Blog where blogId = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
+            if (item is null)
             {
                 Console.WriteLine("No data found!");
                 return;
@@ -104,7 +106,7 @@ namespace NYZDotNetCore.ConsoleApp
         {
             var item = new BlogDto
             {
-                BlogId = id,            
+                BlogId = id,
             };
 
             string query = @"DELETE FROM [dbo].[Tbl_Blog] WHERE BlogId = @BlogId;";
