@@ -15,4 +15,8 @@
 	<PackageReference Include="Dapper" Version="2.1.35" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NYZDotNetCore.Shared\NYZDotNetCore.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
