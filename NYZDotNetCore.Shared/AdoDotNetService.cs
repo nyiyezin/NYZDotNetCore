@@ -19,7 +19,7 @@ namespace NYZDotNetCore.Shared
             _connectionString = connectionString;
         }
 
-        public List<T>Query<T>(string query, params AdoDotNetParameter[]? parameters)
+        public List<T> Query<T>(string query, params AdoDotNetParameter[]? parameters)
         {
 
             SqlConnection sqlConnection = new SqlConnection(_connectionString);
@@ -27,7 +27,7 @@ namespace NYZDotNetCore.Shared
 
             SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
-            if(parameters is not null && parameters.Length> 0)
+            if (parameters is not null && parameters.Length > 0)
             {
                 sqlCommand.Parameters.AddRange(parameters.Select(item => new SqlParameter(item.Name, item.Value)).ToArray());
             }
@@ -38,6 +38,11 @@ namespace NYZDotNetCore.Shared
             sqlDataAdapter.Fill(dataTable);
 
             sqlConnection.Close();
+
+            if (dataTable.Rows.Count == 0)
+            {
+                return null;
+            }
 
             string json = JsonConvert.SerializeObject(dataTable);
             List<T> list = JsonConvert.DeserializeObject<List<T>>(json)!;
@@ -63,6 +68,11 @@ namespace NYZDotNetCore.Shared
             sqlDataAdapter.Fill(dataTable);
 
             sqlConnection.Close();
+
+            if(dataTable.Rows.Count == 0)
+            {
+                return default(T); 
+            }    
 
             string json = JsonConvert.SerializeObject(dataTable);
             List<T> list = JsonConvert.DeserializeObject<List<T>>(json)!;

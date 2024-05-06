@@ -22,12 +22,12 @@ namespace NYZDotNetCore.RestApi.Controllers
             return Ok(list);
         }
 
-        [HttpGet("{id}")] 
+        [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
         {
-            string query = "SELECT * FROM Tbl_Blog WHERE blogId = @BlogId";       
-            var item = _adoDotNetService.QueryFirstOrDefault<BlogModel>(query, new AdoDotNetParameter("@BlogId", id));   
-            if(item is null)
+            string query = "select * from tbl_blog where BlogId = @BlogId";
+            var item = _adoDotNetService.QueryFirstOrDefault<BlogModel>(query, new AdoDotNetParameter("@BlogId", id));
+            if (item is null)
             {
                 return NotFound("No data found!");
             }
@@ -66,10 +66,10 @@ namespace NYZDotNetCore.RestApi.Controllers
       ,[BlogContent] = @BlogContent
  WHERE BlogId = @BlogId";
 
-            int result = _adoDotNetService.Execute(query, 
+            int result = _adoDotNetService.Execute(query,
                 new AdoDotNetParameter("BlogId", id),
-                new AdoDotNetParameter("@BlogTitle", blog.BlogTitle), 
-                new AdoDotNetParameter("@BlogAuthor", blog.BlogAuthor), 
+                new AdoDotNetParameter("@BlogTitle", blog.BlogTitle),
+                new AdoDotNetParameter("@BlogAuthor", blog.BlogAuthor),
                 new AdoDotNetParameter("@BlogContent", blog.BlogContent)
             );
 
@@ -80,8 +80,15 @@ namespace NYZDotNetCore.RestApi.Controllers
         [HttpPatch("{id}")]
         public IActionResult PatchBlog(int id, BlogModel blog)
         {
+            var item = FindById(id);
+
+            if (item is null)
+            {
+                return NotFound("No data found.");
+            }
+
             string conditions = string.Empty;
-            if(!string.IsNullOrEmpty(blog.BlogTitle))
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
             {
                 conditions += "[BlogTitle] = @BlogTitle,  ";
             }
@@ -90,27 +97,37 @@ namespace NYZDotNetCore.RestApi.Controllers
                 conditions += "[BlogAuthor] = @BlogAuthor,  ";
             }
             if (!string.IsNullOrEmpty(blog.BlogContent))
-            { 
+            {
                 conditions += "[BlogContent] = @BlogContent, ";
             }
-            if(conditions.Length == 0)
+            if (conditions.Length == 0)
             {
                 return NotFound("No data to update!");
             }
 
             conditions = conditions.Substring(0, conditions.Length - 2);
-            blog.BlogId = id;
 
             string query = $@"UPDATE [dbo].[Tbl_Blog]
-   SET {conditions}
- WHERE BlogId = @BlogId";
+                           SET {conditions} 
+                         WHERE BlogId = @BlogId";
 
-            int result = _adoDotNetService.Execute(query, 
-                new AdoDotNetParameter("BlogId", id), 
-                new AdoDotNetParameter("@BlogTitle", blog.BlogTitle),
-                new AdoDotNetParameter("@BlogAuthor", blog.BlogAuthor),
-                new AdoDotNetParameter("@BlogContent", blog.BlogContent)
-            );
+
+            List<AdoDotNetParameter> parameters = new List<AdoDotNetParameter>();
+            parameters.Add(new AdoDotNetParameter("@BlogId", id));
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
+            {
+                parameters.Add(new AdoDotNetParameter("@BlogTitle", blog.BlogTitle));
+            }
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                parameters.Add(new AdoDotNetParameter("@BlogAuthor", blog.BlogAuthor));
+            }
+            if (!string.IsNullOrEmpty(blog.BlogContent))
+            {
+                parameters.Add(new AdoDotNetParameter("@BlogContent", blog.BlogContent));
+            }
+
+            int result = _adoDotNetService.Execute(query, parameters.ToArray());
 
             string message = result > 0 ? "Updated Successfully!" : "Updating Failed!";
             return Ok(message);
@@ -126,6 +143,13 @@ namespace NYZDotNetCore.RestApi.Controllers
 
             string message = result > 0 ? "Deleted Successfully!" : "Deleting Failed!";
             return Ok(message);
+        }
+
+        private BlogModel? FindById(int id)
+        {
+            string query = "SELECT * FROM Tbl_Blog WHERE blogId = @BlogId";
+            var item = _adoDotNetService.QueryFirstOrDefault<BlogModel>(query, new AdoDotNetParameter("@BlogId", id));
+            return item;
         }
     }
 }
