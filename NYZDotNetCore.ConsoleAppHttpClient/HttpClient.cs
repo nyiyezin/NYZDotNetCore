@@ -11,12 +11,18 @@ namespace NYZDotNetCore.ConsoleAppHttpClientExample
         public async Task RunAsync()
         {
             await EditAsync(1);
-            await EditAsync(100);
             await EditAsync(500);
 
             await CreateAsync("title", "author", "content");
-            await UpdateAsync(500, "title 1", "author 2", "content 3");
-            await EditAsync(500);
+
+            await UpdateAsync(1, "title", "author", "http-client-content");
+            await UpdateAsync(500, "title", "author", "content");
+
+            await PatchAsync(1, "", "", "patch-httpclient-author");
+            await PatchAsync(500, "", "", "patch-httpclient-author");
+
+            await DeleteAsync(500);
+
             await ReadAsync();
         }
 
@@ -89,6 +95,26 @@ namespace NYZDotNetCore.ConsoleAppHttpClientExample
 
             HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
             var response = await _httpClient.PutAsync($"{_blogEndpoint}/{id}", httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                string message = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
+            }
+        }
+        
+        private async Task PatchAsync(int id, string? title, string? author, string? content)
+        {
+            BlogDto blogDto = new BlogDto()
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
+            };
+
+            string blogJson = JsonConvert.SerializeObject(blogDto);
+
+            HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+            var response = await _httpClient.PatchAsync($"{_blogEndpoint}/{id}", httpContent);
             if (response.IsSuccessStatusCode)
             {
                 string message = await response.Content.ReadAsStringAsync();

@@ -10,12 +10,18 @@ namespace NYZDotNetCore.ConsoleAppRestClientExample
         public async Task RunAsync()
         {
             await EditAsync(1);
-            await EditAsync(100);
             await EditAsync(500);
 
             await CreateAsync("title", "author", "content");
-            await UpdateAsync(500, "title 1", "author 2", "content 3");
-            await EditAsync(500);
+
+            await UpdateAsync(2, "title", "author", "rest-client-content");
+            await UpdateAsync(500, "title", "author", "content");
+
+            await PatchAsync(2, "", "", "patch-restclient-author");
+            await PatchAsync(500, "", "", "patch-restclient-author");
+
+            await DeleteAsync(500);
+
             await ReadAsync();
         }
 
@@ -97,6 +103,27 @@ namespace NYZDotNetCore.ConsoleAppRestClientExample
                 Console.WriteLine(message);
             }
         }
+
+        private async Task PatchAsync(int id, string? title, string? author, string? content)
+        {
+            BlogDto blogDto = new BlogDto()
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
+            };
+
+            var restRequest = new RestRequest($"{_blogEndpoint}/{id}", Method.Patch);
+            restRequest.AddJsonBody(blogDto);
+            var response = await _restClient.ExecuteAsync(restRequest);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string message = response.Content!;
+                Console.WriteLine(message);
+            }
+        }
+
 
         private async Task DeleteAsync(int id)
         {
