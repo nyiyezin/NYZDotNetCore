@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 
-namespace NYZDotNetCore.ConsoleAppRestClientExample
+namespace NYZDotNetCore.ConsoleAppRestClientExamples
 {
     internal class RestClientExample
     {

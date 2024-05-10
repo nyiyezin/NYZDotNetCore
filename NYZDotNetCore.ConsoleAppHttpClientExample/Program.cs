@@ -1,4 +1,4 @@
-﻿using NYZDotNetCore.ConsoleAppHttpClientExample;
+﻿using NYZDotNetCore.ConsoleAppHttpClientExamples;
 
 Console.WriteLine("Hello World");
 HttpClientExample httpClientExample = new HttpClientExample();

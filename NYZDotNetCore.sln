@@ -21,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.Shared", "NYZ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.RestApiWithNLayer", "NYZDotNetCore.RestApiWithNLayer\NYZDotNetCore.RestApiWithNLayer.csproj", "{F0932381-F92C-49AA-8D31-38D82DD3474A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleAppHttpClientExample", "NYZDotNetCore.ConsoleAppHttpClient\NYZDotNetCore.ConsoleAppHttpClientExample.csproj", "{F091DFAC-5D6A-48F1-902F-86A83D1E7E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleAppHttpClientExamples", "NYZDotNetCore.ConsoleAppHttpClientExample\NYZDotNetCore.ConsoleAppHttpClientExamples.csproj", "{F091DFAC-5D6A-48F1-902F-86A83D1E7E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYZDotNetCore.ConsoleAppRestClientExample", "NYZDotNetCore.ConsoleAppRestClientExample\NYZDotNetCore.ConsoleAppRestClientExample.csproj", "{76AF5D18-7B64-4813-8598-153B0E8C4F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleAppRestClientExamples", "NYZDotNetCore.ConsoleAppRestClientExample\NYZDotNetCore.ConsoleAppRestClientExamples.csproj", "{76AF5D18-7B64-4813-8598-153B0E8C4F85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
