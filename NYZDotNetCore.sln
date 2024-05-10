@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.RestApiWithNL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleAppHttpClientExample", "NYZDotNetCore.ConsoleAppHttpClient\NYZDotNetCore.ConsoleAppHttpClientExample.csproj", "{F091DFAC-5D6A-48F1-902F-86A83D1E7E16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYZDotNetCore.ConsoleAppRestClientExample", "NYZDotNetCore.ConsoleAppRestClientExample\NYZDotNetCore.ConsoleAppRestClientExample.csproj", "{76AF5D18-7B64-4813-8598-153B0E8C4F85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{F091DFAC-5D6A-48F1-902F-86A83D1E7E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F091DFAC-5D6A-48F1-902F-86A83D1E7E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F091DFAC-5D6A-48F1-902F-86A83D1E7E16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76AF5D18-7B64-4813-8598-153B0E8C4F85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76AF5D18-7B64-4813-8598-153B0E8C4F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76AF5D18-7B64-4813-8598-153B0E8C4F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76AF5D18-7B64-4813-8598-153B0E8C4F85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
