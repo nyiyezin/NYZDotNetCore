@@ -7,15 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleApp", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{0C7DB62C-A4C1-406A-AC92-F1C0EC5426BB}"
 	ProjectSection(SolutionItems) = preProject
+		NYZDotNetCore.sql = NYZDotNetCore.sql
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.RestApi", "NYZDotNetCoreRestApi\NYZDotNetCore.RestApi.csproj", "{DCD18525-6B8B-49FD-A9E2-EE02771C3018}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5C3893EA-6E1A-449C-B8AD-7966AB80A657}"
-	ProjectSection(SolutionItems) = preProject
-		NYZDotNetCore.sql = NYZDotNetCore.sql
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.Shared", "NYZDotNetCore.Shared\NYZDotNetCore.Shared.csproj", "{7EAB9E47-F7EE-4BB8-B959-ECC8911056B0}"
 EndProject
