@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -12,28 +13,43 @@ namespace NYZDotNetCore.RestApiWithNLayer.Features.MyanmarProverb
         {
             string jsonStr = await System.IO.File.ReadAllTextAsync("MyanmarProverbs.json");
             var model = JsonConvert.DeserializeObject<MyanmarProverb>(jsonStr);
-            return model;
+            return model!;
         }
 
         [HttpGet]
         public async Task<IActionResult> AlphabetList()
         {
             var model = await GetDataAsync();
-            return Ok(model.Tbl_MMProverbsTitle.ToList());
+            return Ok(model.Tbl_MMProverbsTitle);
         }
 
-        [HttpGet("{titleId}/Proverbs")]
-        public async Task<IActionResult> ProverbList(int titleId)
+        [HttpGet("{titleName}")]
+        public async Task<IActionResult> ProverbList(string titleName)
         {
             var model = await GetDataAsync();
-            return Ok(model.Tbl_MMProverbs.Where(proverb => proverb.TitleId == titleId).ToList());
+            var item = model.Tbl_MMProverbsTitle.FirstOrDefault(x => x.TitleName == titleName);
+            if (item is null) return NotFound();
+
+            var titleId = item.TitleId;
+            var result = model.Tbl_MMProverbs.Where(x => x.TitleId == titleId);
+
+            List<Tbl_MmproverbsHead> lst = result.Select(x => new Tbl_MmproverbsHead
+            {
+                ProverbId = x.ProverbId,
+                ProverbName = x.ProverbName,
+                TitleId = x.TitleId
+            }).ToList();
+
+            return Ok(lst);
         }
 
-        [HttpGet("{titleId}/Proverbs/{proverbId}")]
-        public async Task<IActionResult> ProverbsDesc(int titleId, int proverbId)
+        [HttpGet("{titleId}/{proverbId}")]
+        public async Task<IActionResult> Get(int titleId, int proverbId)
         {
             var model = await GetDataAsync();
-            return Ok(model.Tbl_MMProverbs.FirstOrDefault(x => x.TitleId == titleId && x.ProverbId == proverbId));
+            var item = model.Tbl_MMProverbs.FirstOrDefault(x => x.TitleId == titleId && x.ProverbId == proverbId);
+
+            return Ok(item);
         }
     }
 
@@ -41,7 +57,7 @@ namespace NYZDotNetCore.RestApiWithNLayer.Features.MyanmarProverb
     public class MyanmarProverb
     {
         public Tbl_Mmproverbstitle[] Tbl_MMProverbsTitle { get; set; }
-        public Tbl_Mmproverbs[] Tbl_MMProverbs { get; set; }
+        public Tbl_MmproverbsDetail[] Tbl_MMProverbs { get; set; }
     }
 
     public class Tbl_Mmproverbstitle
@@ -50,12 +66,19 @@ namespace NYZDotNetCore.RestApiWithNLayer.Features.MyanmarProverb
         public string TitleName { get; set; }
     }
 
-    public class Tbl_Mmproverbs
+    public class Tbl_MmproverbsDetail
     {
         public int TitleId { get; set; }
         public int ProverbId { get; set; }
         public string ProverbName { get; set; }
         public string ProverbDesp { get; set; }
+    }
+
+    public class Tbl_MmproverbsHead
+    {
+        public int TitleId { get; set; }
+        public int ProverbId { get; set; }
+        public string ProverbName { get; set; }
     }
 
 }
