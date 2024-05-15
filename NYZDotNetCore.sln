@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.RestApi", "NYZDotNetCoreRestApi\NYZDotNetCore.RestApi.csproj", "{DCD18525-6B8B-49FD-A9E2-EE02771C3018}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.RestApi", "NYZDotNetCore.RestApi\NYZDotNetCore.RestApi.csproj", "{DCD18525-6B8B-49FD-A9E2-EE02771C3018}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.Shared", "NYZDotNetCore.Shared\NYZDotNetCore.Shared.csproj", "{7EAB9E47-F7EE-4BB8-B959-ECC8911056B0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.RestApiWithNLayer", "NYZDotNetCore.RestApiWithNLayer\NYZDotNetCore.RestApiWithNLayer.csproj", "{F0932381-F92C-49AA-8D31-38D82DD3474A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleAppHttpClientExamples", "NYZDotNetCore.ConsoleAppHttpClientExample\NYZDotNetCore.ConsoleAppHttpClientExamples.csproj", "{F091DFAC-5D6A-48F1-902F-86A83D1E7E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleAppHttpClientExamples", "NYZDotNetCore.ConsoleAppHttpClientExamples\NYZDotNetCore.ConsoleAppHttpClientExamples.csproj", "{F091DFAC-5D6A-48F1-902F-86A83D1E7E16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleAppRestClientExamples", "NYZDotNetCore.ConsoleAppRestClientExample\NYZDotNetCore.ConsoleAppRestClientExamples.csproj", "{76AF5D18-7B64-4813-8598-153B0E8C4F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.ConsoleAppRestClientExamples", "NYZDotNetCore.ConsoleAppRestClientExamples\NYZDotNetCore.ConsoleAppRestClientExamples.csproj", "{76AF5D18-7B64-4813-8598-153B0E8C4F85}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.PizzaApi", "NYZDotNetCore.PizzaApi\NYZDotNetCore.PizzaApi.csproj", "{176812F1-77DC-498B-B319-1F60724AD8AB}"
 EndProject
