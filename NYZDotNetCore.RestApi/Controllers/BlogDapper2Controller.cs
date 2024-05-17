@@ -2,8 +2,8 @@
 using NYZDotNetCore.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NYZDotNetCoreRestApi;
-using NYZDotNetCoreRestApi.Models;
+using NYZDotNetCore.RestApi;
+using NYZDotNetCore.RestApi.Models;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;

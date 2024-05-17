@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using NYZDotNetCoreRestApi;
-using NYZDotNetCoreRestApi.Models;
+using NYZDotNetCore.RestApi;
+using NYZDotNetCore.RestApi.Models;
 using System.Data;
 
 namespace NYZDotNetCore.RestApi.Controllers

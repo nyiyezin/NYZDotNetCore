@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NYZDotNetCoreRestApi.Models;
+using NYZDotNetCore.RestApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NYZDotNetCoreRestApi.Db
+namespace NYZDotNetCore.RestApi.Db
 {
     internal class AppDbContext : DbContext
     {

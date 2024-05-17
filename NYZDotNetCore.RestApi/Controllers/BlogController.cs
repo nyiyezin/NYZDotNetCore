@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NYZDotNetCoreRestApi.Db;
-using NYZDotNetCoreRestApi.Models;
+using NYZDotNetCore.RestApi.Db;
+using NYZDotNetCore.RestApi.Models;
 
-namespace NYZDotNetCoreRestApi.Controllers
+namespace NYZDotNetCore.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
