@@ -17,5 +17,11 @@ namespace NYZDotNetCore.WinFormsApp.Queries
            ,@BlogAuthor       
            ,@BlogContent)";
 
+        public static string BlogLists { get; } = @"SELECT TOP (1000) [BlogId]
+              ,[BlogTitle]
+              ,[BlogAuthor]
+              ,[BlogContent]
+          FROM [NYZDotNetCore].[dbo].[Tbl_Blog]";
+
     }
 }
