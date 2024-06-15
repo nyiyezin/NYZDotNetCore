@@ -1,29 +1,63 @@
+const tblBlog = "blogs";
 let blogId = null;
 
 getBlogTable();
-// readBlog()
-// createBlog()
-// updateBlog("57d02def-edbb-4985-ab77-b27c2c0638ef","title","author", "content");
-// deleteBlog("1476fc91-022b-4774-96ff-d5cbb180dfdc");
+
+function testConfirmMessage() {
+  let confirmMessage = new Promise(function (success, error) {
+    const result = confirm("Are you sure want to delete?");
+    if (result) {
+      success();
+    } else {
+      error();
+    }
+  });
+
+  confirmMessage.then(
+    function (value) {
+      successMessage("Success");
+    },
+    function (error) {
+      errorMessage("Error");
+    }
+  );
+}
+
+function testConfirmMessage2() {
+  let confirmMessage = new Promise(function (success, error) {
+    Swal.fire({
+      title: "Confirm",
+      text: "Are you sure want to delete?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        success();
+      } else {
+        error();
+      }
+    });
+  });
+
+  confirmMessage.then(
+    function (value) {
+      successMessage("Success");
+    },
+    function (error) {
+      errorMessage("Error");
+    }
+  );
+}
+
+// readBlog();
+// createBlog();
+// updateBlog("fd71a8f8-8a56-47ed-846f-5bf1bfb4bc2e", 'title', 'author', 'content');
+// deleteBlog("02b5e93f-b4e0-45e5-a490-b1c45e4a6022");
+
 function readBlog() {
   let lst = getBlogs();
   console.log(lst);
-}
-
-function createBlog(title, author, content) {
-  let lst = getBlogs();
-
-  const requestModel = {
-    id: crypto.randomUUID(),
-    title: title,
-    author: author,
-    content: content,
-  };
-  lst.push(requestModel);
-  const jsonBlog = JSON.stringify(lst);
-  localStorage.setItem(blogs, jsonBlog);
-  successMessage("Saving success.");
-  clearControls();
 }
 
 function editBlog(id) {
@@ -32,17 +66,41 @@ function editBlog(id) {
   const items = lst.filter((x) => x.id === id);
   console.log(items);
 
+  console.log(items.length);
+
   if (items.length == 0) {
-    console.log("no data was found.");
-    errorMessage("No data was found.");
+    console.log("no data found.");
+    errorMessage("no data found.");
     return;
   }
+
+
   let item = items[0];
+
   blogId = item.id;
   $("#txtTitle").val(item.title);
   $("#txtAuthor").val(item.author);
   $("#txtContent").val(item.content);
   $("#txtTitle").focus();
+}
+
+function createBlog(title, author, content) {
+  let lst = getBlogs();
+
+  const requestModel = {
+    id: uuidv4(),
+    title: title,
+    author: author,
+    content: content,
+  };
+
+  lst.push(requestModel);
+
+  const jsonBlog = JSON.stringify(lst);
+  localStorage.setItem(tblBlog, jsonBlog);
+
+  successMessage("Saving Successful.");
+  clearControls();
 }
 
 function updateBlog(id, title, author, content) {
@@ -51,11 +109,14 @@ function updateBlog(id, title, author, content) {
   const items = lst.filter((x) => x.id === id);
   console.log(items);
 
+  console.log(items.length);
+
   if (items.length == 0) {
-    console.log("no data was found.");
-    errorMessage("No data was found.");
+    console.log("no data found.");
+    errorMessage("no data found.");
     return;
   }
+
   const item = items[0];
   item.title = title;
   item.author = author;
@@ -66,26 +127,77 @@ function updateBlog(id, title, author, content) {
 
   const jsonBlog = JSON.stringify(lst);
   localStorage.setItem(tblBlog, jsonBlog);
-  successMessage("Updating successful.");
+
+  successMessage("Updating Successful.");
 }
 
-function deleteBlog(id) {
-  let result = confirm("Are you sure to delete?");
+function deleteBlog2(id) {
+  let result = confirm("are you sure want to delete?");
   if (!result) return;
+
   let lst = getBlogs();
 
   const items = lst.filter((x) => x.id === id);
   if (items.length == 0) {
-    console.log("no data was found.");
+    console.log("no data found.");
     return;
   }
-  lst = lst.filter((x) => x.id !== id);
 
+  lst = lst.filter((x) => x.id !== id);
   const jsonBlog = JSON.stringify(lst);
   localStorage.setItem(tblBlog, jsonBlog);
 
-  successMessage("Deleting success.");
+  successMessage("Deleting Successful.");
+
   getBlogTable();
+}
+
+function deleteBlog3(id) {
+  Swal.fire({
+    title: "Confirm",
+    text: "Are you sure want to delete?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes",
+  }).then((result) => {
+    if (!result.isConfirmed) return;
+
+    let lst = getBlogs();
+
+    const items = lst.filter((x) => x.id === id);
+    if (items.length == 0) {
+      console.log("no data found.");
+      return;
+    }
+
+    lst = lst.filter((x) => x.id !== id);
+    const jsonBlog = JSON.stringify(lst);
+    localStorage.setItem(tblBlog, jsonBlog);
+
+    successMessage("Deleting Successful.");
+
+    getBlogTable();
+  });
+}
+
+function deleteBlog(id) {
+  confirmMessage("Are you sure want to delete?").then(function (value) {
+    let lst = getBlogs();
+
+    const items = lst.filter((x) => x.id === id);
+    if (items.length == 0) {
+      console.log("no data found.");
+      return;
+    }
+
+    lst = lst.filter((x) => x.id !== id);
+    const jsonBlog = JSON.stringify(lst);
+    localStorage.setItem(tblBlog, jsonBlog);
+
+    successMessage("Deleting Successful.");
+
+    getBlogTable();
+  });
 }
 
 function getBlogs() {
@@ -110,15 +222,9 @@ $("#btnSave").click(function () {
     updateBlog(blogId, title, author, content);
     blogId = null;
   }
+
   getBlogTable();
 });
-
-function successMessage(message) {
-  alert(message);
-}
-function errorMessage(message) {
-  alert(message);
-}
 
 function clearControls() {
   $("#txtTitle").val("");
@@ -132,22 +238,24 @@ function getBlogTable() {
   let count = 0;
   let htmlRows = "";
   lst.forEach((item) => {
-    const htmlRow = `<tr>
+    const htmlRow = `
+        <tr>
             <td>
-            <button type="button" class="btn btn-warning" onclick="editBlog('${
-              item.id
-            }')">Edit</button>
-            <button type="button" class="btn btn-danger" onclick="deleteBlog('${
-              item.id
-            }')">Delete</button>
+                <button type="button" class="btn btn-warning" data-id="${
+                  item.id
+                }" onclick="editBlog('${item.id}')">Edit</button>
+                <button type="button" class="btn btn-danger" data-blog-id="${
+                  item.id
+                }" onclick="deleteBlog('${item.id}')">Delete</button>
             </td>
             <td>${++count}</td>
             <td>${item.title}</td>
             <td>${item.author}</td>
             <td>${item.content}</td>
         </tr>
-    `;
+        `;
     htmlRows += htmlRow;
   });
+
   $("#tbody").html(htmlRows);
 }
