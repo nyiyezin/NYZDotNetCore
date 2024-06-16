@@ -13,9 +13,9 @@ namespace NYZDotNetCore.RestApi.Controllers
     {
         private readonly AppDbContext _appDbContext;
 
-        public BlogController()
+        public BlogController(AppDbContext context)
         {
-            _appDbContext = new AppDbContext();
+            _appDbContext = context;
         }
 
         [HttpGet]
@@ -47,10 +47,10 @@ namespace NYZDotNetCore.RestApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, BlogModel blog) 
+        public IActionResult Update(int id, BlogModel blog)
         {
             var item = _appDbContext.Blogs.FirstOrDefault(x => x.BlogId == id);
-            if(item is null)
+            if (item is null)
             {
                 return NotFound("No data found!");
             }
@@ -60,7 +60,7 @@ namespace NYZDotNetCore.RestApi.Controllers
             item.BlogContent = blog.BlogContent;
             var result = _appDbContext.SaveChanges();
 
-            string message = result > 0 ? "Updated Successfully": "Updating Failed";
+            string message = result > 0 ? "Updated Successfully" : "Updating Failed";
             return Ok(message);
         }
 
@@ -68,7 +68,7 @@ namespace NYZDotNetCore.RestApi.Controllers
         public IActionResult Patch(int id, BlogModel blog)
         {
             var item = _appDbContext.Blogs.FirstOrDefault(x => x.BlogId == id);
-            if(item is null)
+            if (item is null)
             {
                 return NotFound("No data found!");
             }
@@ -96,7 +96,7 @@ namespace NYZDotNetCore.RestApi.Controllers
         public IActionResult Delete(int id)
         {
             var item = _appDbContext.Blogs.FirstOrDefault(x => x.BlogId == id);
-            if(item is null)
+            if (item is null)
             {
                 return NotFound("No data found!");
             }

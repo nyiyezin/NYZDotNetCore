@@ -15,7 +15,15 @@ namespace NYZDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogDapper2Controller : ControllerBase
     {
-        private readonly DapperService _dapperService = new DapperService(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+        // private readonly DapperService _dapperService = new DapperService(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+
+
+        private readonly DapperService _dapperService;
+
+        public BlogDapper2Controller(DapperService dapperService)
+        {
+            _dapperService = dapperService;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs()
@@ -58,7 +66,7 @@ namespace NYZDotNetCore.RestApi.Controllers
         public IActionResult UpdateBlog(int id, BlogModel blog)
         {
             var item = FindById(id);
-            if(item is null)
+            if (item is null)
             {
                 return NotFound();
             }
@@ -84,7 +92,7 @@ namespace NYZDotNetCore.RestApi.Controllers
                 return NotFound();
             }
             string conditions = string.Empty;
-            if(!string.IsNullOrEmpty(blog.BlogTitle))
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
             {
                 conditions += "[BlogTitle] = @BlogTitle,  ";
             }
@@ -93,10 +101,10 @@ namespace NYZDotNetCore.RestApi.Controllers
                 conditions += "[BlogAuthor] = @BlogAuthor,  ";
             }
             if (!string.IsNullOrEmpty(blog.BlogContent))
-            { 
+            {
                 conditions += "[BlogContent] = @BlogContent, ";
             }
-            if(conditions.Length == 0)
+            if (conditions.Length == 0)
             {
                 return NotFound("No data to update!");
             }
@@ -120,18 +128,18 @@ namespace NYZDotNetCore.RestApi.Controllers
         public IActionResult DeleteBlog(int id)
         {
             var item = FindById(id);
-            if(item is null)
+            if (item is null)
             {
                 return NotFound();
             }
             string query = @"DELETE FROM [dbo].[Tbl_Blog] WHERE BlogId = @BlogId;";
 
-            int result = _dapperService.Execute(query, new BlogModel { BlogId = id});
+            int result = _dapperService.Execute(query, new BlogModel { BlogId = id });
 
             string message = result > 0 ? "Deleted Successfully!" : "Deleting Failed!";
             return Ok(message);
-        } 
-        
+        }
+
         private BlogModel FindById(int id)
         {
             string query = "SELECT * FROM Tbl_Blog where blogId = @BlogId";

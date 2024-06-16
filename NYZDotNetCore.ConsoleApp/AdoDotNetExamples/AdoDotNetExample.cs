@@ -11,13 +11,12 @@ namespace NYZDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     internal class AdoDotNetExample
     {
-        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
+        public AdoDotNetExample(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
-            DataSource = "DESKTOP-IQ53SCH",
-            InitialCatalog = "NYZDotNetCore",
-            UserID = "sa",
-            Password = "sa@123",
-        };
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
 
         public void Read()
         {
