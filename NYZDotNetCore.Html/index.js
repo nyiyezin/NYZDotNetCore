@@ -5,26 +5,6 @@ getBlogTable();
 
 function testConfirmMessage() {
   let confirmMessage = new Promise(function (success, error) {
-    const result = confirm("Are you sure want to delete?");
-    if (result) {
-      success();
-    } else {
-      error();
-    }
-  });
-
-  confirmMessage.then(
-    function (value) {
-      successMessage("Success");
-    },
-    function (error) {
-      errorMessage("Error");
-    }
-  );
-}
-
-function testConfirmMessage2() {
-  let confirmMessage = new Promise(function (success, error) {
     Swal.fire({
       title: "Confirm",
       text: "Are you sure want to delete?",
@@ -131,28 +111,8 @@ function updateBlog(id, title, author, content) {
   successMessage("Updating Successful.");
 }
 
-function deleteBlog2(id) {
-  let result = confirm("are you sure want to delete?");
-  if (!result) return;
 
-  let lst = getBlogs();
-
-  const items = lst.filter((x) => x.id === id);
-  if (items.length == 0) {
-    console.log("no data found.");
-    return;
-  }
-
-  lst = lst.filter((x) => x.id !== id);
-  const jsonBlog = JSON.stringify(lst);
-  localStorage.setItem(tblBlog, jsonBlog);
-
-  successMessage("Deleting Successful.");
-
-  getBlogTable();
-}
-
-function deleteBlog3(id) {
+function deleteBlog(id) {
   Swal.fire({
     title: "Confirm",
     text: "Are you sure want to delete?",
@@ -162,26 +122,6 @@ function deleteBlog3(id) {
   }).then((result) => {
     if (!result.isConfirmed) return;
 
-    let lst = getBlogs();
-
-    const items = lst.filter((x) => x.id === id);
-    if (items.length == 0) {
-      console.log("no data found.");
-      return;
-    }
-
-    lst = lst.filter((x) => x.id !== id);
-    const jsonBlog = JSON.stringify(lst);
-    localStorage.setItem(tblBlog, jsonBlog);
-
-    successMessage("Deleting Successful.");
-
-    getBlogTable();
-  });
-}
-
-function deleteBlog(id) {
-  confirmMessage("Are you sure want to delete?").then(function (value) {
     let lst = getBlogs();
 
     const items = lst.filter((x) => x.id === id);
