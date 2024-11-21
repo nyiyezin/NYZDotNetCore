@@ -11,11 +11,18 @@ namespace NYZDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
+        //private readonly AppDbContext _appDbContext;
+
+        //public BlogController(AppDbContext context)
+        //{
+        //    _appDbContext = context;
+        //}
+
         private readonly AppDbContext _appDbContext;
 
-        public BlogController(AppDbContext context)
+        public BlogController(AppDbContext appDbContext)
         {
-            _appDbContext = context;
+            _appDbContext = appDbContext;
         }
 
         [HttpGet]

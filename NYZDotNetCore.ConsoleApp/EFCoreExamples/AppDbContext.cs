@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NYZDotNetCore.ConsoleApp.EFCoreExamples
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
 
         public AppDbContext(DbContextOptions options) : base(options)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NYZDotNetCore.RestApi.Db
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {

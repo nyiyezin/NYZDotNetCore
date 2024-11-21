@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace NYZDotNetCore.ConsoleApp.Dtos
 {
     [Table("Tbl_Blog")]
-    internal class BlogDto
+    public class BlogDto
     {
         [Key]
         public int BlogId { get; set; }

@@ -16,7 +16,7 @@ string connectionString = builder.Configuration.GetConnectionString("DbConnectio
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(connectionString);
-},
+}, 
 ServiceLifetime.Transient,
 ServiceLifetime.Transient);
 

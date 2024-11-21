@@ -11,10 +11,10 @@ namespace NYZDotNetCore.ConsoleApp.Services
     {
         public static SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
-            DataSource = "DESKTOP-IQ53SCH",
+            DataSource = "DESKTOP-U6LKCT1",
             InitialCatalog = "NYZDotNetCore",
-            UserID = "sa",
-            Password = "sa@123",
+            UserID = "nyiye",
+            Password = "N0FCr%I4`0'm",
             TrustServerCertificate = true,
         };
 
