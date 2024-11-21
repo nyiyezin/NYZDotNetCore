@@ -1,0 +1,6 @@
+@NYZDotNetCore.MinimalApi_HostAddress = http://localhost:5128
+
+GET {{NYZDotNetCore.MinimalApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
