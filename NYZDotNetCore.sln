@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.NLayer.Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.NLayer.DataAccess", "NYZDotNetCore.NLayer.DataAccess\NYZDotNetCore.NLayer.DataAccess.csproj", "{2B8A49EE-2F2F-4A07-846D-BC5246F9CD9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYZDotNetCore.MinimalApi", "NYZDotNetCore.MinimalApi\NYZDotNetCore.MinimalApi.csproj", "{15FF2257-26F9-4CD9-A599-81B9E909369F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYZDotNetCore.MinimalApi", "NYZDotNetCore.MinimalApi\NYZDotNetCore.MinimalApi.csproj", "{15FF2257-26F9-4CD9-A599-81B9E909369F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYZDotNetCore.MvcApp", "NYZDotNetCore.MvcApp\NYZDotNetCore.MvcApp.csproj", "{4322C315-E145-4893-BB30-3B251E9C5F71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{15FF2257-26F9-4CD9-A599-81B9E909369F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15FF2257-26F9-4CD9-A599-81B9E909369F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15FF2257-26F9-4CD9-A599-81B9E909369F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4322C315-E145-4893-BB30-3B251E9C5F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4322C315-E145-4893-BB30-3B251E9C5F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4322C315-E145-4893-BB30-3B251E9C5F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4322C315-E145-4893-BB30-3B251E9C5F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
